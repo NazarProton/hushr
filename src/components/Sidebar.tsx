@@ -62,8 +62,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   if (iconOnly) {
     return (
       <div className="flex flex-col justify-between h-full py-8 px-2">
-        <div className="flex justify-center mb-8">
-          <a href="/" className="w-8 h-8 flex items-center justify-center">
+        <div className="flex justify-start mb-8">
+          <a href="/" className="w-8 h-8 flex items-center justify-start">
             <img
               src={getAssetPath('/logo.svg')}
               alt="Hushr"
@@ -163,8 +163,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div className="flex flex-col justify-between h-full py-8 gap-[26px]">
-      <div className="flex justify-center">
-        <div className="w-[127px] h-14 flex items-center justify-center">
+      <div className="flex justify-start">
+        <div className="w-[127px] h-14 flex items-center justify-start">
           <img
             src={getAssetPath('/logo.svg')}
             alt="Hushr"

@@ -204,7 +204,7 @@ const ThreadsView: React.FC = () => {
                       if (hasContent && !isProcessing) createPost();
                     }
                   }}
-                  placeholder="Speak safely... or just add images"
+                  placeholder="Speak safely..."
                   disabled={isProcessing}
                   className="w-full bg-transparent text-white placeholder-white/50 text-xl lg:text-2xl font-quicksand font-medium leading-[30px] resize-none focus:outline-none disabled:opacity-50"
                   rows={1}

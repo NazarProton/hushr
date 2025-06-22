@@ -244,13 +244,7 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                 }`}
               >
                 <div className="px-4 py-2 rounded-2xl bg-white/10 text-white">
-                  <div
-                    className={`mb-1 ${
-                      message.sender_id === 'current-user'
-                        ? 'text-right'
-                        : 'text-left'
-                    }`}
-                  >
+                  <div className="mb-1 text-left">
                     <span
                       className="font-quicksand font-semibold text-sm"
                       style={{
