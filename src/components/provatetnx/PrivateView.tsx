@@ -8,6 +8,7 @@ import {
   GasDropdown,
 } from '../dropdowns';
 import { Token, Network, popularTokens, networks } from '../../lib/mockData';
+import { getAssetPath } from '../../lib/paths';
 
 const PrivateView: React.FC = () => {
   const { walletAddress } = useAuth();
@@ -28,7 +29,6 @@ const PrivateView: React.FC = () => {
   const [selectedGasPriority, setSelectedGasPriority] = useState('Fast');
   const [isTransactionPending, setIsTransactionPending] = useState(false);
 
-  // Function to close all dropdowns
   const closeAllDropdowns = () => {
     setShowFromTokenDropdown(false);
     setShowToTokenDropdown(false);
@@ -41,7 +41,7 @@ const PrivateView: React.FC = () => {
   const [selectedFromToken, setSelectedFromToken] = useState<Token>({
     symbol: 'HUSHR',
     name: 'Hushr Token',
-    icon: '/favicon.png',
+    icon: getAssetPath('/favicon.png'),
     balance: '1,250.45',
     usdValue: '$2,500.90',
   });
@@ -49,7 +49,7 @@ const PrivateView: React.FC = () => {
   const [selectedToToken, setSelectedToToken] = useState<Token>({
     symbol: 'USDC',
     name: 'USD Coin',
-    icon: '/coins/usdc.svg',
+    icon: getAssetPath('/coins/usdc.svg'),
     balance: '500.00',
     usdValue: '$500.00',
   });
@@ -57,14 +57,14 @@ const PrivateView: React.FC = () => {
   const [selectedFromNetwork, setSelectedFromNetwork] = useState<Network>({
     id: 'ethereum',
     name: 'Ethereum',
-    icon: '/networks/eth.png',
+    icon: getAssetPath('/networks/eth.png'),
     chainId: 1,
   });
 
   const [selectedToNetwork, setSelectedToNetwork] = useState<Network>({
     id: 'polygon',
     name: 'Polygon',
-    icon: '/networks/poligon.png',
+    icon: getAssetPath('/networks/poligon.png'),
     chainId: 137,
   });
 

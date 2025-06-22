@@ -95,7 +95,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
   return (
     <div className="w-full border-l min-w-[696px] max-w-[696px] min-h-screen border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0">
       <div className="flex flex-col px-8 py-8 gap-8 overflow-y-auto h-full">
-        {/* Profile Header */}
         <div className="flex flex-col items-start gap-6 border border-white/25 rounded-2xl p-8">
           <div className="flex items-start justify-between w-full">
             <h1 className="text-white font-quicksand font-semibold text-2xl">
@@ -114,7 +113,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
           </div>
 
           <div className="flex items-start gap-6 w-full">
-            {/* Avatar Section */}
             <div className="relative">
               <div className="w-24 h-24 rounded-full overflow-hidden">
                 <img
@@ -143,9 +141,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
               />
             </div>
 
-            {/* Profile Info */}
             <div className="flex-1 space-y-4">
-              {/* Display Name */}
               <div>
                 <label className="block text-white/70 font-quicksand text-sm mb-2">
                   Display Name
@@ -170,7 +166,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
                 )}
               </div>
 
-              {/* Bio */}
               <div>
                 <label className="block text-white/70 font-quicksand text-sm mb-2">
                   Bio
@@ -192,7 +187,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
                 )}
               </div>
 
-              {/* Wallet Address */}
               <div>
                 <label className="block text-white/70 font-quicksand text-sm mb-2">
                   Wallet Address
@@ -213,7 +207,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
             </div>
           </div>
 
-          {/* Edit Actions */}
           {isEditing && (
             <div className="flex gap-3 w-full">
               <button
@@ -232,7 +225,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
           )}
         </div>
 
-        {/* Settings */}
         <div className="flex flex-col gap-6 border border-white/25 rounded-2xl p-8">
           <h2 className="text-white font-quicksand font-semibold text-xl">
             Settings
@@ -290,7 +282,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
           </div>
         </div>
 
-        {/* Danger Zone */}
         <div className="flex flex-col gap-4 border border-red-500/25 rounded-2xl p-8">
           <h2 className="text-red-400 font-quicksand font-semibold text-xl">
             Danger Zone

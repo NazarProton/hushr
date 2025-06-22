@@ -58,16 +58,13 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
 
   return (
     <div className="flex flex-col items-end py-8 gap-8 w-[280px] h-screen">
-      {/* Header with Progress and Buy Button */}
       <div className="flex justify-end items-center gap-4 w-[265px] h-[57px]">
-        {/* Progress */}
         <div className="flex items-center gap-2 w-[46px] h-[25px]">
           <span className="text-hushr-green font-quicksand font-medium text-xl leading-[25px]">
             +21%
           </span>
         </div>
 
-        {/* Buy Button */}
         <button className="flex justify-center items-center px-6 py-4 gap-2 w-[203px] h-[57px] border border-hushr-green rounded-2xl hover:bg-hushr-green/10 transition-colors">
           <img
             width={24}
@@ -81,9 +78,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
         </button>
       </div>
 
-      {/* Your chats Section */}
       <div className="flex flex-col items-start px-8 py-8 gap-8 w-[280px] border border-white/25 rounded-2xl">
-        {/* Title */}
         <div className="flex items-center justify-between w-full">
           <h2 className="text-white font-quicksand font-semibold text-2xl leading-[30px]">
             Your chats
@@ -91,7 +86,6 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
           <img src={getAssetPath('/chat/chreateChat.svg')} alt="Create Chat" />
         </div>
 
-        {/* Chats List */}
         <div className="flex flex-col items-start gap-8 w-[216px]">
           {chats.map((chat) => (
             <div
@@ -103,7 +97,6 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   : 'hover:bg-white/5'
               }`}
             >
-              {/* Avatar */}
               <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                 <img
                   src={getAvatarForUser(chat.wallet_address)}
@@ -112,7 +105,6 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
                 />
               </div>
 
-              {/* Chat Info */}
               <div className="flex-1 min-w-0">
                 <div className="text-white font-quicksand font-semibold text-sm truncate">
                   {chat.name}
@@ -125,7 +117,6 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
           ))}
         </div>
 
-        {/* Show More */}
         <div className="flex items-center gap-2 w-full">
           <span className="text-hushr-green font-quicksand font-semibold text-base leading-5 cursor-pointer hover:text-hushr-green/80 transition-colors">
             Show more

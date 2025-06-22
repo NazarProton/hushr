@@ -5,16 +5,13 @@ import { getAvatarForUser } from '../../lib/avatars';
 const ProfileRightSidebar: React.FC = () => {
   return (
     <div className="flex flex-col items-end py-8 gap-8 w-[280px] h-screen">
-      {/* Header with Progress and Buy Button */}
       <div className="flex justify-end items-center gap-4 w-[265px] h-[57px]">
-        {/* Progress */}
         <div className="flex items-center gap-2 w-[46px] h-[25px]">
           <span className="text-hushr-green font-quicksand font-medium text-xl leading-[25px]">
             +21%
           </span>
         </div>
 
-        {/* Buy Button */}
         <button className="flex justify-center items-center px-6 py-4 gap-2 w-[203px] h-[57px] border border-hushr-green rounded-2xl hover:bg-hushr-green/10 transition-colors">
           <img
             width={24}
@@ -28,14 +25,11 @@ const ProfileRightSidebar: React.FC = () => {
         </button>
       </div>
 
-      {/* Profile Activity Section */}
       <div className="flex flex-col items-start px-8 py-8 gap-8 w-[280px] border border-white/25 rounded-2xl">
-        {/* Title */}
         <h2 className="text-white font-quicksand font-semibold text-2xl leading-[30px]">
           Activity
         </h2>
 
-        {/* Activity List */}
         <div className="flex flex-col items-start gap-4 w-[216px]">
           {[
             { action: 'Posts created', count: '12', time: '2h ago' },
@@ -63,7 +57,6 @@ const ProfileRightSidebar: React.FC = () => {
           ))}
         </div>
 
-        {/* Show More */}
         <div className="flex items-center gap-2 w-full">
           <span className="text-hushr-green font-quicksand font-semibold text-base leading-5 cursor-pointer hover:text-hushr-green/80 transition-colors">
             View all activity
@@ -71,7 +64,6 @@ const ProfileRightSidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Recent Connections */}
       <div className="flex flex-col items-start px-8 py-8 gap-6 w-[280px] border border-white/25 rounded-2xl">
         <h2 className="text-white font-quicksand font-semibold text-xl">
           Recent Connections
@@ -106,7 +98,6 @@ const ProfileRightSidebar: React.FC = () => {
           ))}
         </div>
 
-        {/* Show More Connections */}
         <div className="flex items-center gap-2 w-full">
           <span className="text-hushr-green font-quicksand font-semibold text-base leading-5 cursor-pointer hover:text-hushr-green/80 transition-colors">
             View all connections

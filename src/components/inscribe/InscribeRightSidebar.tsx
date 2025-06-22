@@ -19,16 +19,13 @@ const InscribeRightSidebar: React.FC<InscribeRightSidebarProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-end py-8 gap-8 w-[280px] h-screen">
-      {/* Header with Progress and Buy Button - exactly as in Figma */}
       <div className="flex justify-end items-center gap-4 w-[265px] h-[57px]">
-        {/* Progress */}
         <div className="flex items-center gap-2 w-[46px] h-[25px]">
           <span className="text-hushr-green font-quicksand font-medium text-xl leading-[25px]">
             +21%
           </span>
         </div>
 
-        {/* Buy Button */}
         <button className="flex justify-center items-center px-6 py-4 gap-2 w-[203px] h-[57px] border border-hushr-green rounded-2xl hover:bg-hushr-green/10 transition-colors">
           <img
             width={24}
@@ -42,21 +39,17 @@ const InscribeRightSidebar: React.FC<InscribeRightSidebarProps> = ({
         </button>
       </div>
 
-      {/* Recently Inscribed Section */}
       <div className="flex flex-col items-start px-8 py-8 gap-8 w-[280px] h-[468px] border border-white/25 rounded-2xl">
-        {/* Title */}
         <h2 className="text-white font-quicksand font-semibold text-2xl leading-[30px] w-[216px] h-[30px]">
           Recently Inscribed
         </h2>
 
-        {/* Inscriptions List */}
         <div className="flex flex-col items-start gap-4 w-[216px] h-[289px]">
           {recentInscriptions.slice(0, 5).map((inscription) => (
             <div
               key={inscription.id}
               className="flex flex-col items-start w-[216px] h-[45px]"
             >
-              {/* Name and Type */}
               <div className="flex items-center justify-between w-full h-[25px]">
                 <span className="text-white font-quicksand font-semibold text-xl leading-[25px] truncate flex-1 mr-2">
                   {inscription.name}
@@ -70,7 +63,6 @@ const InscribeRightSidebar: React.FC<InscribeRightSidebarProps> = ({
                 </svg>
               </div>
 
-              {/* Type and Size */}
               <div className="flex items-center gap-2 w-[216px] h-5">
                 <span className="text-white/50 font-quicksand font-medium text-base leading-5">
                   {inscription.type} • {inscription.size}
@@ -80,7 +72,6 @@ const InscribeRightSidebar: React.FC<InscribeRightSidebarProps> = ({
           ))}
         </div>
 
-        {/* Show More */}
         <div className="flex items-center gap-2 w-[216px] h-5">
           <span className="text-hushr-green font-quicksand font-semibold text-base leading-5 w-[86px] h-5 cursor-pointer hover:text-hushr-green/80 transition-colors">
             Show more

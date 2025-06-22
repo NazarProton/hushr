@@ -1,6 +1,5 @@
 import React from 'react';
 import { Network } from '../../lib/mockData';
-import { getAssetPath } from '../../lib/paths';
 
 interface NetworkDropdownProps {
   networks: Network[];
@@ -24,7 +23,7 @@ const NetworkDropdown: React.FC<NetworkDropdownProps> = ({
     >
       <div className="flex items-center gap-2">
         <img
-          src={getAssetPath(selectedNetwork.icon)}
+          src={selectedNetwork.icon}
           alt={selectedNetwork.name}
           className="w-6 h-6"
         />

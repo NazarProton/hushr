@@ -1,6 +1,5 @@
 import React from 'react';
 import { Token } from '../../lib/mockData';
-import { getAssetPath } from '../../lib/paths';
 
 interface TokenDropdownProps {
   tokens: Token[];
@@ -28,7 +27,7 @@ const TokenDropdown: React.FC<TokenDropdownProps> = ({
     >
       <div className="flex items-center gap-3">
         <img
-          src={getAssetPath(selectedToken.icon)}
+          src={selectedToken.icon}
           alt={selectedToken.symbol}
           className="w-8 h-8 rounded-full"
         />
