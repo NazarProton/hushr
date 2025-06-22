@@ -114,7 +114,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   >
                     <div className="w-8 h-8 flex items-center justify-center">
                       <img
-                        src={item.iconPath}
+                        src={getAssetPath(item.iconPath)}
                         alt={item.label}
                         className={`w-8 h-8 ${
                           isActive
@@ -210,7 +210,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 >
                   <div className="w-8 h-8 flex items-center justify-center">
                     <img
-                      src={item.iconPath}
+                      src={getAssetPath(item.iconPath)}
                       alt={item.label}
                       className={`w-8 h-8 ${
                         isActive

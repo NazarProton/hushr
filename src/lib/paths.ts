@@ -1,8 +1,5 @@
-export const getBasePath = (): string => {
-  return import.meta.env.MODE === 'production' ? '/hushr' : '';
-};
-
 export const getAssetPath = (path: string): string => {
-  const basePath = getBasePath();
-  return `${basePath}${path}`;
+  const isLocal =
+    typeof window !== 'undefined' && window.location.hostname === 'localhost';
+  return isLocal ? path : '/hushr' + path;
 };

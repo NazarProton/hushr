@@ -219,8 +219,8 @@ const ThreadsView: React.FC = () => {
                 <img
                   src={
                     hasContent && !isProcessing
-                      ? '/buttons/createPostAble.svg'
-                      : '/buttons/createPostDisable.svg'
+                      ? getAssetPath('/buttons/createPostAble.svg')
+                      : getAssetPath('/buttons/createPostDisable.svg')
                   }
                   alt={hasContent && !isProcessing ? 'Post' : 'Post (disabled)'}
                   className="w-full h-full"
