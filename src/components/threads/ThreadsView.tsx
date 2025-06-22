@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { getAvatarForUser } from '../../lib/avatars';
 import { useAuth } from '../../hooks/useAuth';
 import {
   mockThreads,
   additionalMockThreads,
   MockThread,
 } from '../../lib/mockData';
+import { getAvatarForUser } from '../../lib/avatars';
 
 const ThreadsView: React.FC = () => {
   const { walletAddress, user, isConnected, connectWallet, loading } =
@@ -35,7 +35,6 @@ const ThreadsView: React.FC = () => {
       );
       setPendingPost(null);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, walletAddress, user, pendingPost]);
 
   const createPostWithData = (
@@ -310,7 +309,9 @@ const ThreadsView: React.FC = () => {
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = '/avatars/1.webp';
+                  if (target.src !== '/avatars/1.webp') {
+                    target.src = '/avatars/1.webp';
+                  }
                 }}
               />
             </div>
