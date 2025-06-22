@@ -9,6 +9,7 @@ interface TokenDropdownProps {
   show: boolean;
   onToggle: () => void;
   showBalance?: boolean;
+  dropdownPosition?: 'top' | 'bottom';
 }
 
 const TokenDropdown: React.FC<TokenDropdownProps> = ({
@@ -18,6 +19,7 @@ const TokenDropdown: React.FC<TokenDropdownProps> = ({
   show,
   onToggle,
   showBalance = true,
+  dropdownPosition = 'bottom',
 }) => (
   <div className="relative">
     <button
@@ -58,7 +60,11 @@ const TokenDropdown: React.FC<TokenDropdownProps> = ({
     </button>
 
     {show && (
-      <div className="absolute bottom-full left-0 right-0 mb-3 bg-black border border-white/20 rounded-xl shadow-lg z-50 max-h-[300px] overflow-hidden overflow-y-auto">
+      <div
+        className={`absolute left-0 right-0 bg-black border border-white/20 rounded-xl shadow-lg z-50 max-h-[300px] overflow-hidden overflow-y-auto ${
+          dropdownPosition === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'
+        }`}
+      >
         {tokens.map((token) => (
           <button
             key={token.symbol}
@@ -70,7 +76,7 @@ const TokenDropdown: React.FC<TokenDropdownProps> = ({
           >
             <div className="flex items-center gap-3">
               <img
-                src={getAssetPath(token.icon)}
+                src={token.icon}
                 alt={token.symbol}
                 className="w-8 h-8 rounded-full"
               />

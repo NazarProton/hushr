@@ -408,12 +408,15 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                 disabled={!newMessage.trim() && !selectedImage}
                 className="w-7 h-7 disabled:opacity-30 transition-opacity"
               >
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path
-                    d="M4.03 15.75L10.5 14L4.03 12.25L4 4L24 14L4 24L4.03 15.75Z"
-                    fill="#40F8AB"
-                  />
-                </svg>
+                <img
+                  src={
+                    newMessage.trim() || !selectedImage
+                      ? getAssetPath('/buttons/createPostAble.svg')
+                      : getAssetPath('/buttons/createPostDisable.svg')
+                  }
+                  alt={'send message'}
+                  className="w-full h-full"
+                />
               </button>
             </div>
           </form>

@@ -20,7 +20,7 @@ const NetworkDropdown: React.FC<NetworkDropdownProps> = ({
   <div className="relative">
     <button
       onClick={onToggle}
-      className="flex items-center justify-between gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors w-[168px]"
+      className="flex items-center justify-between gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors w-[188px]"
     >
       <div className="flex items-center gap-2">
         <img
@@ -50,7 +50,7 @@ const NetworkDropdown: React.FC<NetworkDropdownProps> = ({
     </button>
 
     {show && (
-      <div className="absolute top-full right-0 w-[168px] mt-2 bg-black border max-h-[200px] border-white/20 rounded-xl shadow-lg z-40 overflow-hidden overflow-y-auto">
+      <div className="absolute top-full right-0 w-[188px] mt-2 bg-black border max-h-[200px] border-white/20 rounded-xl shadow-lg z-40 overflow-hidden overflow-y-auto">
         {networks.map((network) => (
           <button
             key={network.id}
@@ -58,16 +58,29 @@ const NetworkDropdown: React.FC<NetworkDropdownProps> = ({
               onSelect(network);
               onToggle();
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors"
+            className="w-full flex items-center justify-between gap-3 px-4 py-3 hover:bg-white/10 transition-colors"
           >
-            <img
-              src={getAssetPath(network.icon)}
-              alt={network.name}
-              className="w-6 h-6"
-            />
-            <span className="text-white font-quicksand font-medium text-base">
-              {network.name}
-            </span>
+            <div className="flex items-center gap-3">
+              <img src={network.icon} alt={network.name} className="w-6 h-6" />
+              <span className="text-white font-quicksand font-medium text-base">
+                {network.name}
+              </span>
+            </div>
+            {selectedNetwork.id === network.id && (
+              <svg
+                className="w-4 h-4 text-hushr-green"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            )}
           </button>
         ))}
       </div>

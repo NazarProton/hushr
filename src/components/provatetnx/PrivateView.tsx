@@ -28,6 +28,16 @@ const PrivateView: React.FC = () => {
   const [selectedGasPriority, setSelectedGasPriority] = useState('Fast');
   const [isTransactionPending, setIsTransactionPending] = useState(false);
 
+  // Function to close all dropdowns
+  const closeAllDropdowns = () => {
+    setShowFromTokenDropdown(false);
+    setShowToTokenDropdown(false);
+    setShowFromNetworkDropdown(false);
+    setShowToNetworkDropdown(false);
+    setShowPrivacyDropdown(false);
+    setShowGasDropdown(false);
+  };
+
   const [selectedFromToken, setSelectedFromToken] = useState<Token>({
     symbol: 'HUSHR',
     name: 'Hushr Token',
@@ -135,9 +145,10 @@ const PrivateView: React.FC = () => {
                 selectedNetwork={selectedFromNetwork}
                 onSelect={setSelectedFromNetwork}
                 show={showFromNetworkDropdown}
-                onToggle={() =>
-                  setShowFromNetworkDropdown(!showFromNetworkDropdown)
-                }
+                onToggle={() => {
+                  closeAllDropdowns();
+                  setShowFromNetworkDropdown(!showFromNetworkDropdown);
+                }}
               />
             </div>
 
@@ -181,10 +192,12 @@ const PrivateView: React.FC = () => {
                       selectedToken={selectedFromToken}
                       onSelect={setSelectedFromToken}
                       show={showFromTokenDropdown}
-                      onToggle={() =>
-                        setShowFromTokenDropdown(!showFromTokenDropdown)
-                      }
+                      onToggle={() => {
+                        closeAllDropdowns();
+                        setShowFromTokenDropdown(!showFromTokenDropdown);
+                      }}
                       showBalance={true}
+                      dropdownPosition="bottom"
                     />
                   </div>
                 </div>
@@ -230,9 +243,10 @@ const PrivateView: React.FC = () => {
                 selectedNetwork={selectedToNetwork}
                 onSelect={setSelectedToNetwork}
                 show={showToNetworkDropdown}
-                onToggle={() =>
-                  setShowToNetworkDropdown(!showToNetworkDropdown)
-                }
+                onToggle={() => {
+                  closeAllDropdowns();
+                  setShowToNetworkDropdown(!showToNetworkDropdown);
+                }}
               />
             </div>
 
@@ -297,10 +311,12 @@ const PrivateView: React.FC = () => {
                     selectedToken={selectedToToken}
                     onSelect={setSelectedToToken}
                     show={showToTokenDropdown}
-                    onToggle={() =>
-                      setShowToTokenDropdown(!showToTokenDropdown)
-                    }
+                    onToggle={() => {
+                      closeAllDropdowns();
+                      setShowToTokenDropdown(!showToTokenDropdown);
+                    }}
                     showBalance={false}
+                    dropdownPosition="top"
                   />
                 </div>
               </div>
@@ -359,9 +375,10 @@ const PrivateView: React.FC = () => {
                       selected={selectedPrivacyLevel}
                       onSelect={setSelectedPrivacyLevel}
                       show={showPrivacyDropdown}
-                      onToggle={() =>
-                        setShowPrivacyDropdown(!showPrivacyDropdown)
-                      }
+                      onToggle={() => {
+                        closeAllDropdowns();
+                        setShowPrivacyDropdown(!showPrivacyDropdown);
+                      }}
                     />
                   </div>
 
@@ -374,7 +391,10 @@ const PrivateView: React.FC = () => {
                       selected={selectedGasPriority}
                       onSelect={setSelectedGasPriority}
                       show={showGasDropdown}
-                      onToggle={() => setShowGasDropdown(!showGasDropdown)}
+                      onToggle={() => {
+                        closeAllDropdowns();
+                        setShowGasDropdown(!showGasDropdown);
+                      }}
                     />
                   </div>
                 </div>
