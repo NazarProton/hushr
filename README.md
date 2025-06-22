@@ -32,8 +32,8 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hushr-social.git
-cd hushr-social
+git clone https://github.com/NazarProton/hushr.git
+cd hushr
 ```
 
 2. Install dependencies:
