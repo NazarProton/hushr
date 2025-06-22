@@ -122,7 +122,7 @@ const PrivateView: React.FC = () => {
   };
 
   return (
-    <div className="w-full border-l min-w-[696px] border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0 hide-scrollbar overflow-y-auto">
+    <div className="w-full border-l min-w-[696px] max-w-[696px] border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0 hide-scrollbar overflow-y-auto">
       <div className="flex flex-col justify-center items-center min-h-screen p-8 gap-8">
         <div className="flex flex-col gap-8 w-full max-w-[632px]">
           <div className="flex flex-col gap-4">

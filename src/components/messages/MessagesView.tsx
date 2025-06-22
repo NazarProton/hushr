@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { getAvatarForUser } from '../../lib/avatars';
+import { getAssetPath } from '../../lib/paths';
 import {
   mockUsers,
   mockResponses,
@@ -195,7 +196,7 @@ const MessagesView: React.FC<MessagesViewProps> = ({
   const currentMessages = selectedChat ? selectedChat.messages : [];
 
   return (
-    <div className="flex h-screen w-full min-w-[696px] border-l border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0 relative">
+    <div className="flex h-screen w-full min-w-[696px] max-w-[696px] border-l border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0 relative">
       <div className="flex flex-col w-full">
         <div className="sticky top-0 bg-black border-b border-hushr-gray p-4 z-10">
           <div className="flex items-center gap-3">
@@ -300,8 +301,8 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                             <img
                               src={
                                 message.ticks === 'one'
-                                  ? '/chat/1tick.svg'
-                                  : '/chat/2ticks.svg'
+                                  ? getAssetPath('/chat/1tick.svg')
+                                  : getAssetPath('/chat/2ticks.svg')
                               }
                               alt={
                                 message.ticks === 'one' ? '1 tick' : '2 ticks'
@@ -324,8 +325,8 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                             <img
                               src={
                                 message.ticks === 'one'
-                                  ? '/chat/1tick.svg'
-                                  : '/chat/2ticks.svg'
+                                  ? getAssetPath('/chat/1tick.svg')
+                                  : getAssetPath('/chat/2ticks.svg')
                               }
                               alt={
                                 message.ticks === 'one' ? '1 tick' : '2 ticks'
@@ -346,8 +347,9 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      if (target.src !== '/avatars/1.webp') {
-                        target.src = '/avatars/1.webp';
+                      const fallbackUrl = getAssetPath('/avatars/1.webp');
+                      if (target.src !== fallbackUrl) {
+                        target.src = fallbackUrl;
                       }
                     }}
                   />
@@ -386,7 +388,7 @@ const MessagesView: React.FC<MessagesViewProps> = ({
                   className="group w-6 h-6 text-white/50 hover:text-hushr-green transition-colors"
                 >
                   <img
-                    src="/buttons/attachImage.svg"
+                    src={getAssetPath('/buttons/attachImage.svg')}
                     alt="Attach Image"
                     className="w-full h-full group-hover:opacity-100 opacity-50 transition-opacity"
                   />

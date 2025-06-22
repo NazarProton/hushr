@@ -93,7 +93,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ onTabChange }) => {
   }
 
   return (
-    <div className="w-full border-l min-w-[696px] min-h-screen border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0">
+    <div className="w-full border-l min-w-[696px] max-w-[696px] min-h-screen border-r border-hushr-gray lg:border-l lg:border-r border-l-0 border-r-0">
       <div className="flex flex-col px-8 py-8 gap-8 overflow-y-auto h-full">
         {/* Profile Header */}
         <div className="flex flex-col items-start gap-6 border border-white/25 rounded-2xl p-8">

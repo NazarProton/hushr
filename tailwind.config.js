@@ -11,6 +11,9 @@ export default {
         'hushr-gray': '#404040',
         'hushr-grayLess': '#808080',
       },
+      screens: {
+        lg: '820px',
+      },
     },
   },
   plugins: [],

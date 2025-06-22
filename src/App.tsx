@@ -158,7 +158,7 @@ const AppContent: React.FC = () => {
           </div>
 
           {showRightSidebar && (
-            <div className="hidden lg:block w-[280px] ml-8 flex-shrink-0">
+            <div className="hidden xl:block w-[280px] ml-8 flex-shrink-0">
               <div className="sticky top-0 h-screen">
                 {activeTab === 'messages' ? (
                   <ChatSidebar

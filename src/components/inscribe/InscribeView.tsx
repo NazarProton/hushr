@@ -222,7 +222,7 @@ const InscribeView: React.FC<InscribeViewProps> = ({ onInscriptionCreate }) => {
   };
 
   return (
-    <div className="w-full border-l min-w-[696px] border-r border-hushr-gray overflow-y-auto hide-scrollbar">
+    <div className="w-full border-l min-w-[696px] max-w-[696px] border-r border-hushr-gray overflow-y-auto hide-scrollbar">
       <div className="flex flex-col justify-center items-center px-8 gap-16 min-h-screen">
         <div className="w-full h-0"></div>
 
