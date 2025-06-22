@@ -6,6 +6,7 @@ import {
   MockThread,
 } from '../../lib/mockData';
 import { getAvatarForUser } from '../../lib/avatars';
+import { getAssetPath } from '../../lib/paths';
 
 const ThreadsView: React.FC = () => {
   const { walletAddress, user, isConnected, connectWallet, loading } =
@@ -256,7 +257,7 @@ const ThreadsView: React.FC = () => {
                 className="w-5 group h-5 lg:w-6 lg:h-6 flex items-center justify-center flex-shrink-0 disabled:opacity-50"
               >
                 <img
-                  src="/buttons/attachImage.svg"
+                  src={getAssetPath('/buttons/attachImage.svg')}
                   alt="Attach Image"
                   className="w-full h-full group-hover:opacity-100 opacity-50 transition-opacity"
                 />
@@ -307,12 +308,6 @@ const ThreadsView: React.FC = () => {
                 src={thread.avatar}
                 alt={thread.walletAddress}
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  if (target.src !== '/hushr/avatars/1.webp') {
-                    target.src = '/hushr/avatars/1.webp';
-                  }
-                }}
               />
             </div>
 
@@ -366,7 +361,7 @@ const ThreadsView: React.FC = () => {
                 <button className="flex group items-center py-2 gap-2 flex-1 lg:w-[150px] h-9">
                   <div className="w-4 h-4 flex-shrink-0">
                     <img
-                      src="/buttons/comments.svg"
+                      src={getAssetPath('/buttons/comments.svg')}
                       alt="Comments"
                       className="w-4 h-4 group-hover:opacity-100 opacity-50 transition-opacity"
                       onError={(e) => {
@@ -391,8 +386,8 @@ const ThreadsView: React.FC = () => {
                     <img
                       src={
                         likedPosts.has(thread.id)
-                          ? '/buttons/likeRed.svg'
-                          : '/buttons/like.svg'
+                          ? getAssetPath('/buttons/likeRed.svg')
+                          : getAssetPath('/buttons/like.svg')
                       }
                       alt="Like"
                       className={`w-4 h-4 transition-opacity ${
@@ -420,7 +415,7 @@ const ThreadsView: React.FC = () => {
                 <button className="flex group items-center py-2 gap-2 flex-1 lg:w-[150px] h-9">
                   <div className="w-4 h-4 flex-shrink-0">
                     <img
-                      src="/buttons/wievs.svg"
+                      src={getAssetPath('/buttons/wievs.svg')}
                       alt="Views"
                       className="w-4 h-4 group-hover:opacity-100 opacity-50 transition-opacity"
                       onError={(e) => {
@@ -440,7 +435,7 @@ const ThreadsView: React.FC = () => {
                 <button className="flex group items-center py-2 gap-2 flex-1 lg:w-[150px] h-9">
                   <div className="w-4 h-4 flex-shrink-0">
                     <img
-                      src="/buttons/share.svg"
+                      src={getAssetPath('/buttons/share.svg')}
                       alt="Share"
                       className="w-4 h-4 group-hover:opacity-100 opacity-50 transition-opacity"
                       onError={(e) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../../lib/paths';
 
 const RightSidebar: React.FC = () => {
   return (
@@ -14,7 +15,12 @@ const RightSidebar: React.FC = () => {
 
         {/* Buy Button */}
         <button className="flex justify-center items-center px-6 py-4 gap-2 w-[203px] h-[57px] border border-hushr-green rounded-2xl hover:bg-hushr-green/10 transition-colors">
-          <img width={24} height={24} src="/favicon.png" alt="Buy $hushr" />
+          <img
+            width={24}
+            height={24}
+            src={getAssetPath('/favicon.png')}
+            alt="Buy $hushr"
+          />
           <span className="text-hushr-green font-quicksand font-semibold text-xl leading-[25px]">
             Buy $hushr
           </span>

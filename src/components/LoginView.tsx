@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../hooks/useAuth';
+import { getAssetPath } from '../lib/paths';
 
 interface LoginViewProps {
   onTabChange: (tab: string) => void;
@@ -15,7 +16,7 @@ const LoginView: React.FC<LoginViewProps> = ({ onTabChange, message }) => {
         <div className="text-center mb-8">
           <div className="w-24 h-12 mx-auto mb-4 flex items-center justify-center">
             <img
-              src="/logo.svg"
+              src={getAssetPath('/logo.svg')}
               alt="Hushr"
               className="w-full h-full object-contain"
             />

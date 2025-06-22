@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAvatarForUser } from '../lib/avatars';
 import { useAuth } from '../hooks/useAuth';
+import { getAssetPath } from '../lib/paths';
 
 interface SidebarProps {
   activeTab: string;
@@ -64,12 +65,12 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className="flex justify-center mb-8">
           <a href="/" className="w-8 h-8 flex items-center justify-center">
             <img
-              src="/logo.svg"
+              src={getAssetPath('/logo.svg')}
               alt="Hushr"
               className="w-8 h-8 xl:block hidden object-contain"
             />
             <img
-              src="/favicon.png"
+              src={getAssetPath('/favicon.png')}
               alt="Hushr"
               className="w-8 h-8 xl:hidden block object-contain"
             />
@@ -165,7 +166,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="flex justify-center">
         <div className="w-[127px] h-14 flex items-center justify-center">
           <img
-            src="/logo.svg"
+            src={getAssetPath('/logo.svg')}
             alt="Hushr"
             className="w-full h-full object-contain"
           />

@@ -1,3 +1,5 @@
+import { getAssetPath } from './paths';
+
 export const getAvatarForUser = (userId: string | number): string => {
   const userIdStr = userId.toString();
   let hash = 0;
@@ -9,7 +11,7 @@ export const getAvatarForUser = (userId: string | number): string => {
 
   const avatarNumber = Math.abs(hash % 16) + 1;
 
-  return `/hushr/avatars/${avatarNumber}.webp`;
+  return getAssetPath(`/avatars/${avatarNumber}.webp`);
 };
 
 export const getAvatarForWallet = (walletAddress: string): string => {

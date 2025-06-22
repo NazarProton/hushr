@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { getAssetPath } from '../../lib/paths';
 
 interface UploadedFile {
   id: string;
@@ -247,7 +248,10 @@ const InscribeView: React.FC<InscribeViewProps> = ({ onInscriptionCreate }) => {
             onDrop={handleDrop}
           >
             <div className="w-16 h-16">
-              <img src="/inscribe/dragAndDrop.svg" alt="Drag & Drop" />
+              <img
+                src={getAssetPath('/inscribe/dragAndDrop.svg')}
+                alt="Drag & Drop"
+              />
             </div>
 
             <div className="flex flex-col items-center gap-4 w-[354px]">
