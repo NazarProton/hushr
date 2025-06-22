@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { getAvatarForUser } from '../../lib/avatars';
 import {
   mockUsers,
   mockResponses,
@@ -27,14 +28,13 @@ const MessagesView: React.FC<MessagesViewProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const userColors = [
-    'bg-red-500',
-    'bg-blue-500',
-    'bg-green-500',
-    'bg-yellow-500',
-    'bg-purple-500',
-    'bg-pink-500',
-    'bg-indigo-500',
-    'bg-orange-500',
+    '#4080F8',
+    '#40F8F8',
+    '#8040F8',
+    '#F84040',
+    '#F840B8',
+    '#F88040',
+    '#F8E040',
   ];
 
   const getUserColor = (userId: string) => {
@@ -229,64 +229,128 @@ const MessagesView: React.FC<MessagesViewProps> = ({
             >
               {message.sender_id !== 'current-user' && (
                 <div className="w-8 h-8 rounded-full overflow-hidden mr-3 flex-shrink-0">
-                  <div
-                    className={`w-full h-full flex items-center justify-center text-white text-xs font-bold ${getUserColor(
-                      message.sender_id
-                    )}`}
-                  >
-                    {message.sender?.display_name?.substring(0, 2) || 'U'}
-                  </div>
+                  <img
+                    src={getAvatarForUser(message.sender?.wallet_address || '')}
+                    alt={message.sender?.display_name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               )}
 
               <div
-                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${
-                  message.sender_id === 'current-user'
-                    ? 'bg-hushr-green text-black'
-                    : 'bg-white/10 text-white'
+                className={`max-w-md ${
+                  message.sender_id === 'current-user' ? 'ml-12' : 'mr-12'
                 }`}
               >
-                {message.image && (
-                  <img
-                    src={message.image}
-                    alt="Shared image"
-                    className="w-full rounded-lg mb-2"
-                  />
-                )}
-                {message.content && (
-                  <p className="font-quicksand text-sm">{message.content}</p>
-                )}
-                <div
-                  className={`flex items-center justify-between mt-1 text-xs ${
-                    message.sender_id === 'current-user'
-                      ? 'text-black/70'
-                      : 'text-white/50'
-                  }`}
-                >
-                  <span>{formatTime(message.created_at)}</span>
-                  {message.sender_id === 'current-user' && message.ticks && (
-                    <div className="flex items-center ml-2">
+                <div className="px-4 py-2 rounded-2xl bg-white/10 text-white">
+                  <div
+                    className={`mb-1 ${
+                      message.sender_id === 'current-user'
+                        ? 'text-right'
+                        : 'text-left'
+                    }`}
+                  >
+                    <span
+                      className="font-quicksand font-semibold text-sm"
+                      style={{
+                        color:
+                          message.sender_id === 'current-user'
+                            ? '#40F8AB'
+                            : getUserColor(message.sender_id),
+                      }}
+                    >
+                      {message.sender_id === 'current-user'
+                        ? `${(message.sender?.wallet_address || '').slice(
+                            0,
+                            6
+                          )}...${(message.sender?.wallet_address || '').slice(
+                            -4
+                          )}`
+                        : message.sender?.wallet_address}
+                    </span>
+                  </div>
+
+                  {message.image && (
+                    <div
+                      className={
+                        message.content && message.content !== 'Image'
+                          ? 'mb-2'
+                          : ''
+                      }
+                    >
                       <img
-                        src={
-                          message.ticks === 'two'
-                            ? '/chat/2ticks.svg'
-                            : '/chat/1tick.svg'
-                        }
-                        alt={`${message.ticks} tick${
-                          message.ticks === 'two' ? 's' : ''
-                        }`}
-                        className="w-4 h-4"
+                        src={message.image}
+                        alt="Shared image"
+                        className="max-w-[200px] max-h-[200px] rounded-lg object-cover"
                       />
                     </div>
                   )}
+
+                  {message.content && message.content !== 'Image' && (
+                    <div className="flex items-end justify-between gap-2">
+                      <p className="font-quicksand text-sm flex-1">
+                        {message.content}
+                      </p>
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <span className="text-white/50 font-quicksand text-xs">
+                          {formatTime(message.created_at)}
+                        </span>
+                        {message.sender_id === 'current-user' &&
+                          message.ticks && (
+                            <img
+                              src={
+                                message.ticks === 'one'
+                                  ? '/chat/1tick.svg'
+                                  : '/chat/2ticks.svg'
+                              }
+                              alt={
+                                message.ticks === 'one' ? '1 tick' : '2 ticks'
+                              }
+                              className="w-4 h-3"
+                            />
+                          )}
+                      </div>
+                    </div>
+                  )}
+
+                  {message.image &&
+                    (!message.content || message.content === 'Image') && (
+                      <div className="flex items-center justify-end gap-1 mt-1">
+                        <span className="text-white/50 font-quicksand text-xs">
+                          {formatTime(message.created_at)}
+                        </span>
+                        {message.sender_id === 'current-user' &&
+                          message.ticks && (
+                            <img
+                              src={
+                                message.ticks === 'one'
+                                  ? '/chat/1tick.svg'
+                                  : '/chat/2ticks.svg'
+                              }
+                              alt={
+                                message.ticks === 'one' ? '1 tick' : '2 ticks'
+                              }
+                              className="w-4 h-3"
+                            />
+                          )}
+                      </div>
+                    )}
                 </div>
               </div>
 
               {message.sender_id === 'current-user' && (
                 <div className="w-8 h-8 rounded-full overflow-hidden ml-3 flex-shrink-0">
-                  <div className="w-full h-full bg-hushr-green flex items-center justify-center text-black text-xs font-bold">
-                    {walletAddress?.substring(0, 2).toUpperCase() || 'YU'}
-                  </div>
+                  <img
+                    src={getAvatarForUser(walletAddress || 'current-user')}
+                    alt="You"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (target.src !== '/avatars/1.webp') {
+                        target.src = '/avatars/1.webp';
+                      }
+                    }}
+                  />
                 </div>
               )}
             </div>
@@ -294,85 +358,71 @@ const MessagesView: React.FC<MessagesViewProps> = ({
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="sticky bottom-0 bg-black border-t border-hushr-gray p-4">
-          {selectedImage && (
-            <div className="mb-4 relative inline-block">
+        {selectedImage && (
+          <div className="absolute bottom-24 left-4 z-20">
+            <div className="relative">
               <img
                 src={selectedImage}
                 alt="Selected"
-                className="w-20 h-20 object-cover rounded-lg"
+                className="max-w-[100px] max-h-[100px] rounded-lg object-cover shadow-lg"
               />
               <button
                 onClick={removeSelectedImage}
-                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-sm"
+                className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600 transition-colors"
               >
                 ×
               </button>
             </div>
-          )}
+          </div>
+        )}
 
-          <form
-            onSubmit={handleSendMessage}
-            className="flex items-center gap-3"
-          >
-            <button
-              type="button"
-              onClick={triggerFileSelect}
-              className="flex-shrink-0 w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-            >
-              <svg
-                className="w-5 h-5 text-white/70"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+        <div className="sticky bottom-8 flex flex-col items-start px-4 z-10">
+          <form onSubmit={handleSendMessage} className="w-full max-w-[664px]">
+            <div className="flex items-center justify-between px-4 py-4 gap-4 w-full h-16 bg-black border border-hushr-gray rounded-2xl">
+              <div className="flex items-center gap-2 flex-1">
+                <button
+                  type="button"
+                  onClick={triggerFileSelect}
+                  className="group w-6 h-6 text-white/50 hover:text-hushr-green transition-colors"
+                >
+                  <img
+                    src="/buttons/attachImage.svg"
+                    alt="Attach Image"
+                    className="w-full h-full group-hover:opacity-100 opacity-50 transition-opacity"
+                  />
+                </button>
+
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  placeholder="Speak safely..."
+                  className="flex-1 bg-transparent text-white placeholder-white/50 font-quicksand font-medium text-base leading-5 focus:outline-none"
                 />
-              </svg>
-            </button>
+              </div>
 
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleImageSelect}
-              className="hidden"
-            />
-
-            <div className="flex-1 relative">
-              <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type a message..."
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 focus:outline-none focus:border-hushr-green"
-              />
+              <button
+                type="submit"
+                disabled={!newMessage.trim() && !selectedImage}
+                className="w-7 h-7 disabled:opacity-30 transition-opacity"
+              >
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                  <path
+                    d="M4.03 15.75L10.5 14L4.03 12.25L4 4L24 14L4 24L4.03 15.75Z"
+                    fill="#40F8AB"
+                  />
+                </svg>
+              </button>
             </div>
-
-            <button
-              type="submit"
-              disabled={!newMessage.trim() && !selectedImage}
-              className="flex-shrink-0 w-10 h-10 bg-hushr-green rounded-full flex items-center justify-center hover:bg-hushr-green/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <svg
-                className="w-5 h-5 text-black"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                />
-              </svg>
-            </button>
           </form>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleImageSelect}
+            className="hidden"
+          />
         </div>
       </div>
     </div>

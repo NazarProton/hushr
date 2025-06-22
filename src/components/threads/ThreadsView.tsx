@@ -43,7 +43,7 @@ const ThreadsView: React.FC = () => {
     images: File[],
     imageUrls: string[]
   ) => {
-    if (!content.trim()) return;
+    if (!content.trim() && images.length === 0) return;
 
     let imageUrl = undefined;
     if (images.length > 0 && imageUrls.length > 0) {
@@ -57,7 +57,7 @@ const ThreadsView: React.FC = () => {
 
     const newPost: MockThread = {
       id: `user-${Date.now()}`,
-      content: content,
+      content: content.trim() || '',
       author: user!.display_name || 'You',
       walletAddress: displayAddress,
       handle: `@${walletAddress!.slice(0, 8)}`,
@@ -153,7 +153,8 @@ const ThreadsView: React.FC = () => {
     );
   };
 
-  const hasContent = newThreadContent.trim().length > 0;
+  const hasContent =
+    newThreadContent.trim().length > 0 || selectedImages.length > 0;
   const isProcessing = isConnecting || loading;
 
   const shuffleArray = <T,>(array: T[]): T[] => {
@@ -203,7 +204,7 @@ const ThreadsView: React.FC = () => {
                       if (hasContent && !isProcessing) createPost();
                     }
                   }}
-                  placeholder="Speak safely..."
+                  placeholder="Speak safely... or just add images"
                   disabled={isProcessing}
                   className="w-full bg-transparent text-white placeholder-white/50 text-xl lg:text-2xl font-quicksand font-medium leading-[30px] resize-none focus:outline-none disabled:opacity-50"
                   rows={1}
@@ -324,9 +325,11 @@ const ThreadsView: React.FC = () => {
                 </span>
               </div>
 
-              <div className="text-white font-quicksand font-medium text-sm lg:text-base leading-5 w-full">
-                {thread.content}
-              </div>
+              {thread.content && (
+                <div className="text-white font-quicksand font-medium text-sm lg:text-base leading-5 w-full">
+                  {thread.content}
+                </div>
+              )}
 
               {thread.hasImage && thread.imageUrl && (
                 <div className="w-full max-w-[600px] aspect-square lg:h-[400px] xl:h-[600px] rounded-2xl overflow-hidden bg-gray-800">
