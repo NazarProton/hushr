@@ -309,8 +309,8 @@ const ThreadsView: React.FC = () => {
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  if (target.src !== '/avatars/1.webp') {
-                    target.src = '/avatars/1.webp';
+                  if (target.src !== '/hushr/avatars/1.webp') {
+                    target.src = '/hushr/avatars/1.webp';
                   }
                 }}
               />

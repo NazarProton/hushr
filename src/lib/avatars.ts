@@ -9,7 +9,7 @@ export const getAvatarForUser = (userId: string | number): string => {
 
   const avatarNumber = Math.abs(hash % 16) + 1;
 
-  return `/avatars/${avatarNumber}.webp`;
+  return `/hushr/avatars/${avatarNumber}.webp`;
 };
 
 export const getAvatarForWallet = (walletAddress: string): string => {
