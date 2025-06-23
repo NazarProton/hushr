@@ -22,7 +22,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
   const chats: Chat[] = [
     {
       id: 'chat-1',
-      name: '1bp5...0x15',
+      name: 'DeFi Traders',
       wallet_address: '0x1bp5...0x15',
       lastMessage: 'GM! Ready for trading?',
       isActive: selectedChatId === 'chat-1',
@@ -36,8 +36,8 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
     },
     {
       id: 'chat-3',
-      name: 'DeFi Traders',
-      wallet_address: '0xDeFi...Trad',
+      name: '0x3456...789a',
+      wallet_address: '0x3456...789a',
       lastMessage: 'Always DYOR before investing',
       isActive: selectedChatId === 'chat-3',
     },

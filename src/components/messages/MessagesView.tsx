@@ -4,7 +4,8 @@ import { getAvatarForUser } from '../../lib/avatars';
 import { getAssetPath } from '../../lib/paths';
 import {
   mockUsers,
-  mockResponses,
+  agreeResponses,
+  disagreeResponses,
   createMockChats,
   MockMessage,
   Chat,
@@ -89,30 +90,61 @@ const MessagesView: React.FC<MessagesViewProps> = ({
     const availableUsers = mockUsers.filter(
       (user) => user.id !== 'current-user'
     );
-    const randomUser =
-      availableUsers[Math.floor(Math.random() * availableUsers.length)];
-    const randomResponse =
-      mockResponses[Math.floor(Math.random() * mockResponses.length)];
 
-    const newResponse: MockMessage = {
+    // Pick two different users
+    const shuffledUsers = [...availableUsers].sort(() => Math.random() - 0.5);
+    const firstUser = shuffledUsers[0];
+    const secondUser = shuffledUsers[1] || shuffledUsers[0]; // fallback if only one user
+
+    // First user agrees
+    const agreeResponse =
+      agreeResponses[Math.floor(Math.random() * agreeResponses.length)];
+    const firstResponse: MockMessage = {
       id: `msg-${Date.now()}-${Math.random()}`,
-      content: randomResponse,
-      sender_id: randomUser.id,
+      content: agreeResponse,
+      sender_id: firstUser.id,
       created_at: new Date().toISOString(),
-      sender: randomUser,
+      sender: firstUser,
     };
 
+    // Second user disagrees
+    const disagreeResponse =
+      disagreeResponses[Math.floor(Math.random() * disagreeResponses.length)];
+    const secondResponse: MockMessage = {
+      id: `msg-${Date.now() + 1}-${Math.random()}`,
+      content: disagreeResponse,
+      sender_id: secondUser.id,
+      created_at: new Date(Date.now() + 1000).toISOString(),
+      sender: secondUser,
+    };
+
+    // Add first response
     setChats((prevChats) =>
       prevChats.map((chat) =>
         chat.id === selectedChatId
           ? {
               ...chat,
-              messages: [...chat.messages, newResponse],
-              lastMessage: randomResponse,
+              messages: [...chat.messages, firstResponse],
+              lastMessage: agreeResponse,
             }
           : chat
       )
     );
+
+    // Add second response after a delay
+    setTimeout(() => {
+      setChats((prevChats) =>
+        prevChats.map((chat) =>
+          chat.id === selectedChatId
+            ? {
+                ...chat,
+                messages: [...chat.messages, secondResponse],
+                lastMessage: disagreeResponse,
+              }
+            : chat
+        )
+      );
+    }, 1500 + Math.random() * 1000);
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -164,12 +196,6 @@ const MessagesView: React.FC<MessagesViewProps> = ({
       );
 
       generateAutoResponse();
-
-      if (Math.random() > 0.5) {
-        setTimeout(() => {
-          generateAutoResponse();
-        }, 2000 + Math.random() * 3000);
-      }
     }, 1000 + Math.random() * 2000);
 
     onNotificationChange(false);
